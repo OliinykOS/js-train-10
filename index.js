@@ -333,10 +333,15 @@ function convertArrayToObj(arr) {
     // Додаємо ключ та значення до об'єкта
     // Застосовуємо метод Object.fromEntries() для створення об'єкта
     if (Array.isArray(arr)) {
-        let resultObj = Object();
+        const obj = {};
         for (let i = 0; i < arr.length; i++) {
-            console.log(arr[i]);
+            const [key, value] = arr[i];
+            if (obj.hasOwnProperty(key)) {
+                console.log(`У масиві є дубльований ключ: ${key}`);
+            }
+            obj[key] = value;
         }
+        return Object.fromEntries(arr);
     } else {
         return {};
     }
